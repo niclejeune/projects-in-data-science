@@ -8,7 +8,9 @@ The labeling process was done by each group member individually, manually by han
 ## Comment by annotator:
 
 ### a1:
-
+ - A lot of lesions were difficult to see, no obvious lesions
+ - In many cases there were instances of many different lesions, in which all were labeled
+ - Some patients were shown subject as having a lot of hair, making the lesion hard to see at times
 
 ### a2:
 
