@@ -2,7 +2,7 @@ import os
 os.environ["OMP_NUM_THREADS"] = "1"
 import cv2
 import numpy as np
-from skimage import io, segmentation, color
+from skimage import io, segmentation
 from sklearn.cluster import KMeans
 
 def process(image_path, lesion_masks_dir, output_mask_dir, output_overlay_dir, n_clusters=5):
@@ -77,10 +77,10 @@ def extract_features(image, lesion_mask):
     return segments_slic, np.array(mean_colors)
 
 #Directories path :
-dataset_dir = "raw_data"
-lesion_masks_dir = "masks"
-output_mask_dir = "test"
-output_overlay_dir = "test2"
+dataset_dir = "..."
+lesion_masks_dir = "..."
+output_mask_dir = "..."
+output_overlay_dir = "..."
 
 if not os.path.exists(output_mask_dir):
     os.makedirs(output_mask_dir)
