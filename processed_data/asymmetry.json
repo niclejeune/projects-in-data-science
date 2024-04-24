@@ -1,642 +1,637 @@
 {
-    "group_A_masks/masks/mask1/PAT_1109_437_254_mask.png": {
-        "mean": 52161.94736842105,
-        "std": 20863.862918739826,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask1/PAT_1255_876_939_mask.png": {
-        "mean": 138765.2105263158,
-        "std": 50591.942652726146,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1210_738_915_mask.png": {
-        "mean": 46689.73684210526,
-        "std": 4288.3161011496695,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1074_322_662_mask.png": {
-        "mean": 23203.473684210527,
-        "std": 4845.071824663653,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/EByKo.png": {
-        "mean": 5445.263157894737,
-        "std": 400.75229809962786,
-        "diagnostic": "Unknown"
-    },
-    "group_A_masks/masks/mask1/PAT_1516_1765_530_mask.png": {
-        "mean": 55872.89473684211,
-        "std": 18975.320768094476,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask1/PAT_1453_1567_250_mask.png": {
-        "mean": 4328.789473684211,
-        "std": 250.75907475783842,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask1/PAT_1423_1472_18_mask.png": {
-        "mean": 11561.0,
-        "std": 886.7340134032955,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_117_179_983_mask.png": {
-        "mean": 169207.57894736843,
-        "std": 42748.32669463374,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask1/PAT_1414_1429_59_mask.png": {
-        "mean": 10188.736842105263,
-        "std": 1511.365602155713,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1381_1314_517_mask.png": {
-        "mean": 9245.052631578947,
-        "std": 1429.9959320400073,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_134_201_587_mask.png": {
-        "mean": 15340.052631578947,
-        "std": 4037.150153963928,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask1/PAT_1278_965_701_mask.png": {
-        "mean": 184013.42105263157,
-        "std": 40472.283773903175,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1029_135_239_mask.png": {
-        "mean": 1917.6315789473683,
-        "std": 89.83242324421612,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1276_957_406_mask.png": {
-        "mean": 26251.0,
-        "std": 3205.005714749811,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask1/PAT_1070_305_907_mask.png": {
-        "mean": 5997.894736842105,
-        "std": 370.28920343810387,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_106_159_325_mask.png": {
-        "mean": 7988.578947368421,
-        "std": 960.1376993234094,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask1/PAT_107_160_609_mask.png": {
-        "mean": 19179.473684210527,
-        "std": 1690.7276965982196,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask1/PAT_1014_86_861_mask.png": {
-        "mean": 14613.578947368422,
-        "std": 1905.1961721286416,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1492_1705_578_mask.png": {
-        "mean": 9846.894736842105,
-        "std": 784.8566342256964,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1400_1372_276_mask.png": {
-        "mean": 2379.4210526315787,
-        "std": 108.27052657675473,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask1/PAT_1549_1882_230_mask.png": {
-        "mean": 6919.789473684211,
-        "std": 505.5668604799097,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask1/PAT_1545_1867_547_mask.png": {
-        "mean": 21479.736842105263,
-        "std": 2255.98643011282,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1431_1495_511_mask.png": {
-        "mean": 227401.68421052632,
-        "std": 62177.39642688968,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1094_381_85_mask.png": {
-        "mean": 5719.105263157895,
-        "std": 328.9814256053855,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask1/PAT_1006_53_716_mask.png": {
-        "mean": 3014.4736842105262,
-        "std": 222.52022224391027,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_2051_4356_460_mask.png": {
+    "data/masks/PAT_2051_4356_460_mask.png": {
         "mean": 28169.57894736842,
         "std": 5725.846665187691,
         "diagnostic": "ACK"
     },
-    "group_A_masks/masks/mask2/PAT_1818_3568_132_mask.png": {
+    "data/masks/PAT_1818_3568_132_mask.png": {
         "mean": 150914.2105263158,
         "std": 55455.39756139632,
         "diagnostic": "ACK"
     },
-    "group_A_masks/masks/mask2/PAT_183_283_495_mask.png": {
-        "mean": 2700.2631578947367,
-        "std": 169.0338932395273,
-        "diagnostic": "SCC"
-    },
-    "group_A_masks/masks/mask2/PAT_2025_4229_541_mask.png": {
-        "mean": 12491.315789473685,
-        "std": 790.2704768576375,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1989_4061_934_mask.png": {
-        "mean": 18760.315789473683,
-        "std": 5342.318943094908,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_2020_4174_799_mask.png": {
-        "mean": 35473.78947368421,
-        "std": 12232.139364369705,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1653_2916_346_mask.png": {
-        "mean": 30922.42105263158,
-        "std": 9108.52277765916,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask2/PAT_1884_3730_813_mask.png": {
-        "mean": 939.1578947368421,
-        "std": 82.85387464045533,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1754_3308_390_mask.png": {
-        "mean": 273240.8947368421,
-        "std": 70528.85777384783,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask2/PAT_1995_4080_695_mask.png": {
-        "mean": 40059.36842105263,
-        "std": 5256.940296914029,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1803_3463_639_mask.png": {
-        "mean": 50998.36842105263,
-        "std": 16265.241324307184,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask2/PAT_1710_3160_488_mask.png": {
-        "mean": 11359.157894736842,
-        "std": 741.5065221814796,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1582_2574_34_mask.png": {
-        "mean": 1934.0,
-        "std": 155.56958165670468,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask2/PAT_168_1486_97_mask.png": {
-        "mean": 13407.473684210527,
-        "std": 1910.6946482316748,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask2/PAT_1693_3103_879_mask.png": {
-        "mean": 14820.578947368422,
-        "std": 1539.8919242934405,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_181_833_109_mask.png": {
-        "mean": 5753.578947368421,
-        "std": 647.4021215019362,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1984_4038_265_mask.png": {
-        "mean": 40975.57894736842,
-        "std": 8231.969594311076,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask2/PAT_1573_2499_849_mask.png": {
-        "mean": 24459.63157894737,
-        "std": 4435.361300307555,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1721_3219_737_mask.png": {
-        "mean": 41756.57894736842,
-        "std": 8471.426672960479,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask2/PAT_1725_3222_943_mask.png": {
-        "mean": 980707.8947368421,
-        "std": 358508.1851650039,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1842_3615_850_mask.png": {
-        "mean": 7216.315789473684,
-        "std": 842.8837125657295,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask2/PAT_1783_3414_120_mask.png": {
-        "mean": 70412.52631578948,
-        "std": 13588.48889537883,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask2/PAT_1688_3066_491_mask.png": {
-        "mean": 18322.157894736843,
-        "std": 2861.8626757881398,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask2/PAT_1902_3790_168_mask.png": {
-        "mean": 6953.631578947368,
-        "std": 464.1979739322115,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask2/PAT_1790_3425_942_mask.png": {
-        "mean": 7204.263157894737,
-        "std": 327.1970824257491,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask2/PAT_1926_3871_371_mask.png": {
-        "mean": 48146.31578947369,
-        "std": 9082.585401992515,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask3/PAT_276_425_539_mask.png": {
+    "data/masks/PAT_276_425_539_mask.png": {
         "mean": 25145.78947368421,
         "std": 7536.638197770922,
         "diagnostic": "ACK"
     },
-    "group_A_masks/masks/mask3/PAT_409_812_974_mask.png": {
-        "mean": 16801.263157894737,
-        "std": 2752.6594000807995,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_411_815_692_mask.png": {
-        "mean": 8805.157894736842,
-        "std": 1148.1253032275517,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask3/PAT_42_58_13_mask.png": {
-        "mean": 16865.842105263157,
-        "std": 1833.2689458180519,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_2140_4726_141_mask.png": {
-        "mean": 23772.0,
-        "std": 5740.836982806418,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask3/PAT_2127_4662_596_mask.png": {
-        "mean": 375601.05263157893,
-        "std": 86693.72995446835,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask3/PAT_377_1580_534_mask.png": {
-        "mean": 17889.684210526317,
-        "std": 3152.3780005214708,
-        "diagnostic": "SCC"
-    },
-    "group_A_masks/masks/mask3/PAT_394_1562_579_mask.png": {
-        "mean": 8058.684210526316,
-        "std": 258.91647761830734,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_302_651_529_mask.png": {
-        "mean": 24886.42105263158,
-        "std": 3250.1672234839575,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_38_54_234_mask.png": {
-        "mean": 58715.52631578947,
-        "std": 13873.254074575601,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_241_367_89_mask.png": {
-        "mean": 933156.6842105263,
-        "std": 212452.75159644382,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_319_680_832_mask.png": {
-        "mean": 82759.47368421052,
-        "std": 30750.291708275618,
-        "diagnostic": "SCC"
-    },
-    "group_A_masks/masks/mask3/PAT_289_1399_481_mask.png": {
-        "mean": 10281.894736842105,
-        "std": 792.26044991443,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask3/PAT_374_762_794_mask.png": {
-        "mean": 20667.684210526317,
-        "std": 6367.763029945458,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask3/PAT_241_367_374_mask.png": {
-        "mean": 88872.84210526316,
-        "std": 24645.844601736902,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_369_755_391_mask.png": {
-        "mean": 61106.05263157895,
-        "std": 17783.731882859694,
-        "diagnostic": "SCC"
-    },
-    "group_A_masks/masks/mask3/PAT_359_4450_86_mask.png": {
-        "mean": 28619.63157894737,
-        "std": 6825.339565183216,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask3/PAT_288_441_312_mask.png": {
-        "mean": 33648.05263157895,
-        "std": 4184.249728052044,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_419_832_706_mask.png": {
-        "mean": 51631.57894736842,
-        "std": 13701.002261900747,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask3/PAT_2088_4524_465_mask.png": {
-        "mean": 3496.7368421052633,
-        "std": 146.87654755476333,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask3/PAT_333_1469_499_mask.png": {
-        "mean": 110091.21052631579,
-        "std": 22144.560503722965,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask3/PAT_26_37_865_mask.png": {
-        "mean": 11638.21052631579,
-        "std": 1246.844504674326,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask3/PAT_380_1540_959_mask.png": {
-        "mean": 346414.8947368421,
-        "std": 105246.26972031622,
-        "diagnostic": "SCC"
-    },
-    "group_A_masks/masks/mask3/PAT_236_361_180_mask.png": {
-        "mean": 16699.36842105263,
-        "std": 2016.412609471174,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask3/PAT_265_406_276_mask.png": {
-        "mean": 6328.368421052632,
-        "std": 524.7140284329638,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_53_1370_245_mask.png": {
-        "mean": 102844.94736842105,
-        "std": 30303.297370476794,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_692_1308_364_mask.png": {
-        "mean": 82637.05263157895,
-        "std": 20387.442077683856,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_492_937_958_mask.png": {
-        "mean": 116574.57894736843,
-        "std": 34347.970594790735,
-        "diagnostic": "SCC"
-    },
-    "group_A_masks/masks/mask4/PAT_724_1369_896_mask.png": {
-        "mean": 20018.526315789473,
-        "std": 3233.67305199555,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_701_4056_457_mask.png": {
-        "mean": 10988.368421052632,
-        "std": 1367.1068071517545,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask4/PAT_46_881_939_mask.png": {
-        "mean": 111719.78947368421,
-        "std": 19001.654192752318,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_441_861_415_mask.png": {
-        "mean": 5615.631578947368,
-        "std": 276.30069632963966,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_544_3299_671_mask.png": {
-        "mean": 28438.105263157893,
-        "std": 7125.579480736152,
-        "diagnostic": "SEK"
-    },
-    "group_A_masks/masks/mask4/PAT_714_1337_709_mask.png": {
-        "mean": 13286.052631578947,
-        "std": 2966.30922499367,
-        "diagnostic": "SCC"
-    },
-    "group_A_masks/masks/mask4/PAT_636_1204_521_mask.png": {
-        "mean": 8656.684210526315,
-        "std": 526.2483456787678,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_426_842_458_mask.png": {
-        "mean": 28897.63157894737,
-        "std": 3209.58868836436,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_549_1043_676_mask.png": {
-        "mean": 28244.36842105263,
-        "std": 3135.64360405234,
-        "diagnostic": "SCC"
-    },
-    "group_A_masks/masks/mask4/PAT_55_84_506_mask.png": {
-        "mean": 22362.105263157893,
-        "std": 3210.5365987755945,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_684_1302_588_mask.png": {
-        "mean": 10774.315789473685,
-        "std": 1794.5688546169577,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_620_1176_980_mask.png": {
-        "mean": 29007.57894736842,
-        "std": 5033.540412659123,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_705_4015_413_mask.png": {
-        "mean": 268459.94736842107,
-        "std": 68861.87309540568,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask4/PAT_435_854_68_mask.png": {
-        "mean": 22167.315789473683,
-        "std": 4168.148731468856,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_621_1183_56_mask.png": {
-        "mean": 41398.78947368421,
-        "std": 5966.424293529209,
-        "diagnostic": "NEV"
-    },
-    "group_A_masks/masks/mask4/PAT_479_919_97_mask.png": {
-        "mean": 25321.052631578947,
-        "std": 5275.756064287041,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_430_848_476_mask.png": {
-        "mean": 152034.84210526315,
-        "std": 26904.415312191024,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_461_895_72_mask.png": {
-        "mean": 154269.42105263157,
-        "std": 56654.231599112456,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_680_1289_182_mask.png": {
-        "mean": 9779.052631578947,
-        "std": 771.8915572651933,
-        "diagnostic": "MEL"
-    },
-    "group_A_masks/masks/mask4/PAT_682_1292_986_mask.png": {
-        "mean": 27158.0,
-        "std": 2750.93936109487,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_741_1401_619_mask.png": {
-        "mean": 184110.63157894736,
-        "std": 54564.64011003784,
-        "diagnostic": "BCC"
-    },
-    "group_A_masks/masks/mask4/PAT_645_4043_374_mask.png": {
-        "mean": 432706.94736842107,
-        "std": 135178.06627730298,
-        "diagnostic": "ACK"
-    },
-    "group_A_masks/masks/mask5/PAT_995_1867_5_mask.png": {
+    "data/masks/PAT_995_1867_5_mask.png": {
         "mean": 66269.42105263157,
         "std": 11318.267320509098,
         "diagnostic": "MEL"
     },
-    "group_A_masks/masks/mask5/PAT_796_1510_130_mask.png": {
+    "data/masks/PAT_409_812_974_mask.png": {
+        "mean": 16801.263157894737,
+        "std": 2752.6594000807995,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_53_1370_245_mask.png": {
+        "mean": 102844.94736842105,
+        "std": 30303.297370476794,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_411_815_692_mask.png": {
+        "mean": 8805.157894736842,
+        "std": 1148.1253032275517,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_692_1308_364_mask.png": {
+        "mean": 82637.05263157895,
+        "std": 20387.442077683856,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_796_1510_130_mask.png": {
         "mean": 96258.63157894737,
         "std": 17913.974710178016,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_778_1471_835_mask.png": {
+    "data/masks/PAT_492_937_958_mask.png": {
+        "mean": 116574.57894736843,
+        "std": 34347.970594790735,
+        "diagnostic": "SCC"
+    },
+    "data/masks/PAT_42_58_13_mask.png": {
+        "mean": 16865.842105263157,
+        "std": 1833.2689458180519,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1109_437_254_mask.png": {
+        "mean": 52161.94736842105,
+        "std": 20863.862918739826,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_2140_4726_141_mask.png": {
+        "mean": 23772.0,
+        "std": 5740.836982806418,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_724_1369_896_mask.png": {
+        "mean": 20018.526315789473,
+        "std": 3233.67305199555,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_183_283_495_mask.png": {
+        "mean": 2700.2631578947367,
+        "std": 169.0338932395273,
+        "diagnostic": "SCC"
+    },
+    "data/masks/PAT_778_1471_835_mask.png": {
         "mean": 728.4736842105264,
         "std": 59.159791128997334,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_920_1747_19_mask.png": {
+    "data/masks/PAT_2025_4229_541_mask.png": {
+        "mean": 12491.315789473685,
+        "std": 790.2704768576375,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1989_4061_934_mask.png": {
+        "mean": 18760.315789473683,
+        "std": 5342.318943094908,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_920_1747_19_mask.png": {
         "mean": 36648.52631578947,
         "std": 6296.15566389875,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_847_1610_165_mask.png": {
+    "data/masks/PAT_847_1610_165_mask.png": {
         "mean": 88522.31578947368,
         "std": 23490.582670850603,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_867_1650_901_mask.png": {
+    "data/masks/PAT_2127_4662_596_mask.png": {
+        "mean": 375601.05263157893,
+        "std": 86693.72995446835,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_2020_4174_799_mask.png": {
+        "mean": 35473.78947368421,
+        "std": 12232.139364369705,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_867_1650_901_mask.png": {
         "mean": 48067.63157894737,
         "std": 18172.670943829005,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_759_1538_566_mask.png": {
+    "data/masks/PAT_759_1538_566_mask.png": {
         "mean": 9167.21052631579,
         "std": 626.2954640664814,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_967_1827_247_mask.png": {
+    "data/masks/PAT_701_4056_457_mask.png": {
+        "mean": 10988.368421052632,
+        "std": 1367.1068071517545,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_1255_876_939_mask.png": {
+        "mean": 138765.2105263158,
+        "std": 50591.942652726146,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_377_1580_534_mask.png": {
+        "mean": 17889.684210526317,
+        "std": 3152.3780005214708,
+        "diagnostic": "SCC"
+    },
+    "data/masks/PAT_46_881_939_mask.png": {
+        "mean": 111719.78947368421,
+        "std": 19001.654192752318,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1210_738_915_mask.png": {
+        "mean": 46689.73684210526,
+        "std": 4288.3161011496695,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1074_322_662_mask.png": {
+        "mean": 23203.473684210527,
+        "std": 4845.071824663653,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_394_1562_579_mask.png": {
+        "mean": 8058.684210526316,
+        "std": 258.91647761830734,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_441_861_415_mask.png": {
+        "mean": 5615.631578947368,
+        "std": 276.30069632963966,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_967_1827_247_mask.png": {
         "mean": 699.578947368421,
         "std": 68.17957387391628,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_805_1517_154_mask.png": {
+    "data/masks/PAT_1653_2916_346_mask.png": {
+        "mean": 30922.42105263158,
+        "std": 9108.52277765916,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_1516_1765_530_mask.png": {
+        "mean": 55872.89473684211,
+        "std": 18975.320768094476,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_1884_3730_813_mask.png": {
+        "mean": 939.1578947368421,
+        "std": 82.85387464045533,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_302_651_529_mask.png": {
+        "mean": 24886.42105263158,
+        "std": 3250.1672234839575,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_805_1517_154_mask.png": {
         "mean": 922.1578947368421,
         "std": 77.01726611467323,
         "diagnostic": "SCC"
     },
-    "group_A_masks/masks/mask5/PAT_981_1848_906_mask.png": {
+    "data/masks/PAT_1453_1567_250_mask.png": {
+        "mean": 4328.789473684211,
+        "std": 250.75907475783842,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_1423_1472_18_mask.png": {
+        "mean": 11561.0,
+        "std": 886.7340134032955,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_117_179_983_mask.png": {
+        "mean": 169207.57894736843,
+        "std": 42748.32669463374,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_38_54_234_mask.png": {
+        "mean": 58715.52631578947,
+        "std": 13873.254074575601,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_241_367_89_mask.png": {
+        "mean": 933156.6842105263,
+        "std": 212452.75159644382,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1754_3308_390_mask.png": {
+        "mean": 273240.8947368421,
+        "std": 70528.85777384783,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_544_3299_671_mask.png": {
+        "mean": 28438.105263157893,
+        "std": 7125.579480736152,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_1414_1429_59_mask.png": {
+        "mean": 10188.736842105263,
+        "std": 1511.365602155713,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_981_1848_906_mask.png": {
         "mean": 5165.263157894737,
         "std": 780.8704213622442,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_814_1532_545_mask.png": {
+    "data/masks/PAT_1995_4080_695_mask.png": {
+        "mean": 40059.36842105263,
+        "std": 5256.940296914029,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1381_1314_517_mask.png": {
+        "mean": 9245.052631578947,
+        "std": 1429.9959320400073,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_134_201_587_mask.png": {
+        "mean": 15340.052631578947,
+        "std": 4037.150153963928,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1278_965_701_mask.png": {
+        "mean": 184013.42105263157,
+        "std": 40472.283773903175,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_714_1337_709_mask.png": {
+        "mean": 13286.052631578947,
+        "std": 2966.30922499367,
+        "diagnostic": "SCC"
+    },
+    "data/masks/PAT_319_680_832_mask.png": {
+        "mean": 82759.47368421052,
+        "std": 30750.291708275618,
+        "diagnostic": "SCC"
+    },
+    "data/masks/PAT_1803_3463_639_mask.png": {
+        "mean": 50998.36842105263,
+        "std": 16265.241324307184,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_814_1532_545_mask.png": {
         "mean": 91489.52631578948,
         "std": 28491.410145716072,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_966_1825_584_mask.png": {
+    "data/masks/PAT_636_1204_521_mask.png": {
+        "mean": 8656.684210526315,
+        "std": 526.2483456787678,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_966_1825_584_mask.png": {
         "mean": 11794.684210526315,
         "std": 967.3481141560255,
         "diagnostic": "MEL"
     },
-    "group_A_masks/masks/mask5/PAT_98_152_562_mask.png": {
+    "data/masks/PAT_1710_3160_488_mask.png": {
+        "mean": 11359.157894736842,
+        "std": 741.5065221814796,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_426_842_458_mask.png": {
+        "mean": 28897.63157894737,
+        "std": 3209.58868836436,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1029_135_239_mask.png": {
+        "mean": 1917.6315789473683,
+        "std": 89.83242324421612,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_98_152_562_mask.png": {
         "mean": 45116.21052631579,
         "std": 17484.897102714698,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_802_1516_910_mask.png": {
+    "data/masks/PAT_1276_957_406_mask.png": {
+        "mean": 26251.0,
+        "std": 3205.005714749811,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_1582_2574_34_mask.png": {
+        "mean": 1934.0,
+        "std": 155.56958165670468,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_289_1399_481_mask.png": {
+        "mean": 10281.894736842105,
+        "std": 792.26044991443,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_802_1516_910_mask.png": {
         "mean": 59928.73684210526,
         "std": 6561.901031048414,
         "diagnostic": "ACK"
     },
-    "group_A_masks/masks/mask5/PAT_882_1677_789_mask.png": {
+    "data/masks/PAT_168_1486_97_mask.png": {
+        "mean": 13407.473684210527,
+        "std": 1910.6946482316748,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1693_3103_879_mask.png": {
+        "mean": 14820.578947368422,
+        "std": 1539.8919242934405,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_549_1043_676_mask.png": {
+        "mean": 28244.36842105263,
+        "std": 3135.64360405234,
+        "diagnostic": "SCC"
+    },
+    "data/masks/PAT_374_762_794_mask.png": {
+        "mean": 20667.684210526317,
+        "std": 6367.763029945458,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1070_305_907_mask.png": {
+        "mean": 5997.894736842105,
+        "std": 370.28920343810387,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_55_84_506_mask.png": {
+        "mean": 22362.105263157893,
+        "std": 3210.5365987755945,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_882_1677_789_mask.png": {
         "mean": 17947.21052631579,
         "std": 1121.9891677377175,
         "diagnostic": "SCC"
     },
-    "group_A_masks/masks/mask5/PAT_958_1812_62_mask.png": {
+    "data/masks/PAT_241_367_374_mask.png": {
+        "mean": 88872.84210526316,
+        "std": 24645.844601736902,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_958_1812_62_mask.png": {
         "mean": 41126.15789473684,
         "std": 6211.947679678995,
         "diagnostic": "NEV"
     },
-    "group_A_masks/masks/mask5/PAT_838_1585_282_mask.png": {
+    "data/masks/PAT_838_1585_282_mask.png": {
         "mean": 3734.3684210526317,
         "std": 417.32528150319075,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_793_1512_327_mask.png": {
+    "data/masks/PAT_106_159_325_mask.png": {
+        "mean": 7988.578947368421,
+        "std": 960.1376993234094,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_107_160_609_mask.png": {
+        "mean": 19179.473684210527,
+        "std": 1690.7276965982196,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_1014_86_861_mask.png": {
+        "mean": 14613.578947368422,
+        "std": 1905.1961721286416,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_793_1512_327_mask.png": {
         "mean": 76253.31578947368,
         "std": 10244.432657752424,
         "diagnostic": "NEV"
     },
-    "group_A_masks/masks/mask5/PAT_963_1820_823_mask.png": {
+    "data/masks/PAT_369_755_391_mask.png": {
+        "mean": 61106.05263157895,
+        "std": 17783.731882859694,
+        "diagnostic": "SCC"
+    },
+    "data/masks/PAT_181_833_109_mask.png": {
+        "mean": 5753.578947368421,
+        "std": 647.4021215019362,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_963_1820_823_mask.png": {
         "mean": 8683.315789473685,
         "std": 483.5873134716134,
         "diagnostic": "ACK"
     },
-    "group_A_masks/masks/mask5/PAT_795_1508_925_mask.png": {
+    "data/masks/PAT_1492_1705_578_mask.png": {
+        "mean": 9846.894736842105,
+        "std": 784.8566342256964,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1984_4038_265_mask.png": {
+        "mean": 40975.57894736842,
+        "std": 8231.969594311076,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_684_1302_588_mask.png": {
+        "mean": 10774.315789473685,
+        "std": 1794.5688546169577,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_359_4450_86_mask.png": {
+        "mean": 28619.63157894737,
+        "std": 6825.339565183216,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1400_1372_276_mask.png": {
+        "mean": 2379.4210526315787,
+        "std": 108.27052657675473,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_620_1176_980_mask.png": {
+        "mean": 29007.57894736842,
+        "std": 5033.540412659123,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1573_2499_849_mask.png": {
+        "mean": 24459.63157894737,
+        "std": 4435.361300307555,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1721_3219_737_mask.png": {
+        "mean": 41756.57894736842,
+        "std": 8471.426672960479,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_705_4015_413_mask.png": {
+        "mean": 268459.94736842107,
+        "std": 68861.87309540568,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_795_1508_925_mask.png": {
         "mean": 6582.8421052631575,
         "std": 919.6678612788706,
         "diagnostic": "ACK"
     },
-    "group_A_masks/masks/mask5/PAT_79_120_532_mask.png": {
+    "data/masks/PAT_1725_3222_943_mask.png": {
+        "mean": 980707.8947368421,
+        "std": 358508.1851650039,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_79_120_532_mask.png": {
         "mean": 4997.473684210527,
         "std": 559.3661232446912,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_875_1668_588_mask.png": {
+    "data/masks/PAT_288_441_312_mask.png": {
+        "mean": 33648.05263157895,
+        "std": 4184.249728052044,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_435_854_68_mask.png": {
+        "mean": 22167.315789473683,
+        "std": 4168.148731468856,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_875_1668_588_mask.png": {
         "mean": 12314.0,
         "std": 497.59442372912076,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_875_1669_946_mask.png": {
+    "data/masks/PAT_1842_3615_850_mask.png": {
+        "mean": 7216.315789473684,
+        "std": 842.8837125657295,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_875_1669_946_mask.png": {
         "mean": 27372.473684210527,
         "std": 4907.192882509265,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_944_1795_371_mask.png": {
+    "data/masks/PAT_621_1183_56_mask.png": {
+        "mean": 41398.78947368421,
+        "std": 5966.424293529209,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_479_919_97_mask.png": {
+        "mean": 25321.052631578947,
+        "std": 5275.756064287041,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_419_832_706_mask.png": {
+        "mean": 51631.57894736842,
+        "std": 13701.002261900747,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_2088_4524_465_mask.png": {
+        "mean": 3496.7368421052633,
+        "std": 146.87654755476333,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_430_848_476_mask.png": {
+        "mean": 152034.84210526315,
+        "std": 26904.415312191024,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1783_3414_120_mask.png": {
+        "mean": 70412.52631578948,
+        "std": 13588.48889537883,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_461_895_72_mask.png": {
+        "mean": 154269.42105263157,
+        "std": 56654.231599112456,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1549_1882_230_mask.png": {
+        "mean": 6919.789473684211,
+        "std": 505.5668604799097,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_1545_1867_547_mask.png": {
+        "mean": 21479.736842105263,
+        "std": 2255.98643011282,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_680_1289_182_mask.png": {
+        "mean": 9779.052631578947,
+        "std": 771.8915572651933,
+        "diagnostic": "MEL"
+    },
+    "data/masks/PAT_682_1292_986_mask.png": {
+        "mean": 27158.0,
+        "std": 2750.93936109487,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_333_1469_499_mask.png": {
+        "mean": 110091.21052631579,
+        "std": 22144.560503722965,
+        "diagnostic": "NEV"
+    },
+    "data/masks/PAT_26_37_865_mask.png": {
+        "mean": 11638.21052631579,
+        "std": 1246.844504674326,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_944_1795_371_mask.png": {
         "mean": 16758.526315789473,
         "std": 2250.9544494542765,
         "diagnostic": "BCC"
     },
-    "group_A_masks/masks/mask5/PAT_868_1657_698_mask.png": {
+    "data/masks/PAT_1688_3066_491_mask.png": {
+        "mean": 18322.157894736843,
+        "std": 2861.8626757881398,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_868_1657_698_mask.png": {
         "mean": 87.47368421052632,
         "std": 12.084650643003087,
         "diagnostic": "ACK"
     },
-    "group_A_masks/masks/mask5/PAT_962_1823_942_mask.png": {
+    "data/masks/PAT_741_1401_619_mask.png": {
+        "mean": 184110.63157894736,
+        "std": 54564.64011003784,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_380_1540_959_mask.png": {
+        "mean": 346414.8947368421,
+        "std": 105246.26972031622,
+        "diagnostic": "SCC"
+    },
+    "data/masks/PAT_1431_1495_511_mask.png": {
+        "mean": 227401.68421052632,
+        "std": 62177.39642688968,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_236_361_180_mask.png": {
+        "mean": 16699.36842105263,
+        "std": 2016.412609471174,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1902_3790_168_mask.png": {
+        "mean": 6953.631578947368,
+        "std": 464.1979739322115,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_1790_3425_942_mask.png": {
+        "mean": 7204.263157894737,
+        "std": 327.1970824257491,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_1094_381_85_mask.png": {
+        "mean": 5719.105263157895,
+        "std": 328.9814256053855,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_1006_53_716_mask.png": {
+        "mean": 3014.4736842105262,
+        "std": 222.52022224391027,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_645_4043_374_mask.png": {
+        "mean": 432706.94736842107,
+        "std": 135178.06627730298,
+        "diagnostic": "ACK"
+    },
+    "data/masks/PAT_962_1823_942_mask.png": {
         "mean": 5578.0526315789475,
         "std": 278.10807700078544,
+        "diagnostic": "BCC"
+    },
+    "data/masks/PAT_1926_3871_371_mask.png": {
+        "mean": 48146.31578947369,
+        "std": 9082.585401992515,
+        "diagnostic": "SEK"
+    },
+    "data/masks/PAT_265_406_276_mask.png": {
+        "mean": 6328.368421052632,
+        "std": 524.7140284329638,
         "diagnostic": "BCC"
     }
 }
