@@ -57,9 +57,9 @@ def merging_data_frames(meta_df,even_df,compact_df,assy_df):
     print(message)
 
 # Using realitve path to navigate to the images and the masks and creating a DF from the meta data csv for the analisys
-img = './data/images'
-mask = './data/masks'
-meta_csv = './data/metadata.csv'
+img = 'Masks1300images/Images'
+mask = 'Masks1300images/Masks'
+meta_csv = 'Masks1300images/1300-IMAGES-CSV-FILE.csv'
 
 meta_data_df = creating_basic_df(meta_csv)
 evenness_df, compactness_df, assymetry_df = creating_missing_df_img(img,mask)
