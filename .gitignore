@@ -1,3 +1,4 @@
 .DS_Store
 .ipynb_checkpoints/
-.additional_files/
+.slic_mask
+.slic_overlays

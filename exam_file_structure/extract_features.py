@@ -15,7 +15,6 @@ from skimage.color import rgb2gray
 from skimage.filters import threshold_otsu
 from scipy.ndimage import center_of_mass, shift
 
-
 #1st features: Color evenness
 def calculate_hsv_deviations(hsv_image, mask):
     """
@@ -83,7 +82,7 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
                                         start_label=1)
             out_1 = color.label2rgb(segments_1, cropped_lesion, kind='avg')
             img_avg_lesion_1[min_x:max_x,min_y:max_y] = out_1
-            img_avg_lesion[mask == 0] = rgb_img[mask==0]            
+            img_avg_lesion_1[mask == 0] = rgb_img[mask==0]            
 
             img_avg_lesion_1_hsv = matplotlib.colors.rgb_to_hsv(img_avg_lesion_1)
             
@@ -96,7 +95,6 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
 
     HSV_score_df = pd.DataFrame(HSV_score)
     return  HSV_score_df
-
 
 
 # 2nd feature: Compactness
@@ -143,7 +141,6 @@ def process_all_images(directory):
     return compactness_score_df
 
 
-
 #3rd features: Assymetry
 def read_and_process_image(image_path):
     original_image = io.imread(image_path)
@@ -169,7 +166,7 @@ def measure_asymmetry(binary_img):
     horizontal_asymmetry = np.sum(np.logical_xor(binary_img, horizontal_flip))
     return vertical_asymmetry, horizontal_asymmetry
 
-def process_images_in_directory(directory, output_path):
+def process_images_in_directory(directory):
     asymmetry_data = []
     for filename in os.listdir(directory):
         if filename.endswith(".png"):  # Ensuring to process only images
@@ -184,14 +181,16 @@ def process_images_in_directory(directory, output_path):
                 results[angle] = (vertical, horizontal)
             for angle, (vertical, horizontal) in results.items():
                 asymmetry_data.append([filename, angle, vertical, horizontal])
-    save_results_to_csv(asymmetry_data, output_path)
+    return data_framing(asymmetry_data)
 
-def save_results_to_csv(data, file_path):
+def data_framing(data):
     df = pd.DataFrame(data, columns=['Filename', 'Angle', 'Vertical Asymmetry', 'Horizontal Asymmetry'])
-    df.to_csv(file_path, index=False)
+    assymetry_df = preprocess_assymetry(df)
+    return assymetry_df
 
-def main(input_directory, output_csv_file):
-    process_images_in_directory(input_directory, output_csv_file)
+def main_assy_fun(input_directory):
+    assymetry_df = process_images_in_directory(input_directory)
+    return assymetry_df
 
 
 # Pre-process data from assymetry: 
@@ -201,24 +200,16 @@ def preprocess_assymetry(data):
     creats a datafram out of it - for creating a features csv file.
     THIS IS A HELPER FUNCTION'''
 
-    # Convert data into a DataFrame
-    preproc_assy_df = pd.DataFrame(data, columns=["Filename", "Angle", "Vertical Asymmetry", "Horizontal Asymmetry"])
-
     # Remove '_mask' from filenames
-    preproc_assy_df['Filename'] = preproc_assy_df['Filename'].str.replace('_mask.png', '.png')
-    preproc_assy_df = preproc_assy_df.rename(columns={'Filename': 'img_id'})
+    data['Filename'] = data['Filename'].str.replace('_mask.png', '.png')
+    data = data.rename(columns={'Filename': 'img_id'})
+
     # Drop the 'Mask' column
-    preproc_assy_df = preproc_assy_df.drop(columns=['Angle'])
-    
-    preproc_assy_df.columns = ["img_id", "Vertical Asymmetry_mean", "Horizontal Asymmetry_mean"]
+    data = data.drop(columns=['Angle'])
+    data.columns = ["img_id", "Vertical Asymmetry_mean", "Horizontal Asymmetry_mean"]
 
     # Calculate mean for each image
-    summary_df =  preproc_assy_df.groupby("img_id").mean().reset_index()
-
+    summary_df =  data.groupby("img_id").mean()
     return summary_df
-
-
-
-
 
 
