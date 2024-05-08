@@ -19,7 +19,7 @@ def calculate_hsv_deviations(hsv_image, mask):
         std_dev = np.std(masked_channel)
         deviations.append(std_dev)
         std_devs[channel_name] = std_dev
-    std_devs['Uniformity_Score'] = np.mean(deviations)
+#    std_devs['Uniformity_Score'] = np.mean(deviations) useless
     return std_devs
 
 
@@ -41,11 +41,10 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
             mask_name = base_name + '_mask.png'
             mask_path = os.path.join(mask_path_o, mask_name)
             
-            # original_image = cv2.imread(image_path)
+            # original_image = cv2.imread(image_path) #doesn't work with SLIC implementation
+            # mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE) #doesn't work with SLIC implementation
             rgb_img = plt.imread(image_path)[:,:,:3]
             mask = plt.imread(mask_path)
-            # mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
-            #rgb to hsv
             
             if filename is None or mask_name is None:
                 HSV_score['img_id'].append(filename)
@@ -59,7 +58,7 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
                 mean = np.mean(channel[mask.astype(bool)])
                 channel[mask.astype(bool)] = mean
                 img_avg_lesion[:,:,i] = channel
-
+# SLIC
             # cropping the image according to the mask
             lesion_coords = np.where(mask != 0)
             min_x = min(lesion_coords[0])
@@ -74,16 +73,16 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
                                         start_label=1)
             out_1 = color.label2rgb(segments_1, cropped_lesion, kind='avg')
             img_avg_lesion_1[min_x:max_x,min_y:max_y] = out_1
-            img_avg_lesion[mask == 0] = rgb_img[mask==0]            
+            img_avg_lesion_1[mask == 0] = rgb_img[mask==0]            
 
-            img_avg_lesion_1_hsv = matplotlib.colors.rgb_to_hsv(img_avg_lesion_1)
+            img_avg_lesion_1_hsv = matplotlib.colors.rgb_to_hsv(img_avg_lesion_1)             #rgb to hsv
             
             uniformity = calculate_hsv_deviations(img_avg_lesion_1_hsv, mask)
             HSV_score['img_id'].append(filename)
             HSV_score['hue'].append(uniformity['Hue'])
             HSV_score['saturation'].append(uniformity['Saturation'])
             HSV_score['value'].append(uniformity['Value'])
-            HSV_score['hsv_uniformity'].append(uniformity['Uniformity_Score'])
+           # HSV_score['hsv_uniformity'].append(uniformity['Uniformity_Score']) removing because it is useless
 
     HSV_score_df = pd.DataFrame(HSV_score)
     return  HSV_score_df
