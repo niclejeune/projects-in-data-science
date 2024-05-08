@@ -9,11 +9,7 @@ import seaborn as sns
 from typing import Tuple, Optional
 import joblib
 
-# INPUT PATHS
 FEATURES_PATH = "features/features.csv" # Path for features data from 01_process_images
-
-# OUTPUT PATHS
-MODELS_PATH = "features/training/models" # Path to save models to
 RESULTS_PATH = "features/training/results.csv" # Path to save training results to
 
 def load_data(file_path: str) -> pd.DataFrame:
@@ -73,7 +69,7 @@ def train(X_train: pd.DataFrame, y_train: pd.Series, X_test: pd.DataFrame, y_tes
         pd.DataFrame: DataFrame containing grid search results.
     """
     param_grid = {
-        'n_estimators': [*range(1, 17), 100, 1000, 10000],
+        'n_estimators': [*range(1, 17), 50, 100, 1000],
         'max_depth': range(1, 21),
         'min_samples_split': [2, 5, 10],
         'min_samples_leaf': [1, 2, 4],
@@ -117,4 +113,4 @@ def main(features_path: str, models_path: Optional[str] = None, results_path: Op
         results.to_csv(results_path, index=False)
         
 if __name__ == "__main__":
-    main(FEATURES_PATH, MODELS_PATH, RESULTS_PATH)
+    main(FEATURES_PATH, results_path=RESULTS_PATH)
