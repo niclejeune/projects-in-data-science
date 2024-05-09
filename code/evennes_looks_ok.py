@@ -15,14 +15,14 @@ def calculate_hsv_deviations(hsv_image, mask):
     mask_bool = mask > 0 #mask_bool, has True values where the mask is greater than 0 (indicating the area of interest) and False elsewhere.
     std_devs = []
     deviations = []
-    std_devs = {'Hue': 0, 'Saturation': 0, 'Value': 0, 'Uniformity_Score': 0}
+    std_devs = {'Hue': 0, 'Saturation': 0, 'Value': 0}
     for i, channel_name in enumerate(['Hue', 'Saturation', 'Value']):  # Iterate over HUE, SATURATION, VALUE channels
         channel = hsv_image[:, :, i] # [x,y, H/S/V] where x and y coordinates
         masked_channel = channel[mask_bool] # Apply mask
-        std_dev = np.std(masked_channel)
+        std_dev = np.std(masked_channel) #calculated s.d.
         deviations.append(std_dev)
         std_devs[channel_name] = std_dev
-    std_devs['Uniformity_Score'] = np.mean(deviations)
+    #std_devs['Uniformity_Score'] = np.mean(deviations) useless
     return std_devs
 
 #for loop for processing all the pictures:
@@ -82,7 +82,7 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
             HSV_score['hue'].append(uniformity['Hue'])
             HSV_score['saturation'].append(uniformity['Saturation'])
             HSV_score['value'].append(uniformity['Value'])
-            HSV_score['hsv_uniformity'].append(uniformity['Uniformity_Score'])
+            #HSV_score['hsv_uniformity'].append(uniformity['Uniformity_Score'])
 
     HSV_score_df = pd.DataFrame(HSV_score)
     return  HSV_score_df
