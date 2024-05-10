@@ -415,6 +415,11 @@ def train_final_model(data: pd.DataFrame, best_strategy: Dict[str, Any], save_pa
     joblib.dump(model, save_path)
     logging.info(f"Model saved to {save_path}")
 
+    # Save the best strategy parameters to a CSV file
+    params_save_path = f"{save_path}_parameters.csv"
+    pd.DataFrame([best_strategy]).to_csv(params_save_path, index=False)
+    logging.info(f"Model parameters saved to {params_save_path}")
+
 
 def main() -> None:
     """

@@ -1,0 +1,2 @@
+max_depth,max_features,min_samples_leaf,min_samples_split,n_estimators
+3,log2,4,10,1000
