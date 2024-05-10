@@ -32,7 +32,7 @@ def read_and_process_image(image_path):
 
     return binary_image
 
-def calculate_asymmetry(binary_image):
+def shift_to_center(binary_image):
     """
     Calculates the center of mass of the binary image and shifts it to the center of the image.
     Args:
@@ -89,7 +89,7 @@ def process_images_in_directory(directory, output_path):
             # Read and process the image to binary
             binary_image = read_and_process_image(f)
             # Calculate center of mass and shift the image
-            shifted_image_float = calculate_asymmetry(binary_image)
+            shifted_image_float = shift_to_center(binary_image)
             results = {}
             # Rotate the image at 5-degree intervals up to 90 degrees
             for angle in range(0, 91, 5):

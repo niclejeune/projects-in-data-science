@@ -8,13 +8,15 @@ from mpl_toolkits.mplot3d import Axes3D
 import seaborn as sns
 from typing import Tuple, Optional
 import joblib
+import os
 
 FEATURES_PATH = "features/features.csv" # Path for features data from 01_process_images
 RESULTS_PATH = "features/training/results.csv" # Path to save training results to
 
 def load_data(file_path: str) -> pd.DataFrame:
     """
-    Load data from a CSV file.
+    Load data from a CSV file. This function is used to read the data into a DataFrame which
+    allows for further manipulation and analysis.
     
     Parameters:
         file_path (str): The path to the CSV file.
@@ -41,7 +43,8 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
 
 def split_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """
-    Split data into training and testing sets.
+   Split data into training and testing sets. This function ensures that the model is tested on
+    unseen data, evaluating the model's performance effectively.
     
     Parameters:
         df (pd.DataFrame): The DataFrame containing the data.
@@ -56,7 +59,8 @@ def split_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Series,
 
 def train(X_train: pd.DataFrame, y_train: pd.Series, X_test: pd.DataFrame, y_test: pd.Series, save_path: Optional[str] = None) -> pd.DataFrame:
     """
-    Train models.
+    Train multiple RandomForest models using a grid of parameters to find the best performing model.
+    Uses the ParameterGrid to create combinations of parameters, which are then applied to training the model.
     
     Parameters:
         X_train (pd.DataFrame): Training features.
@@ -75,8 +79,12 @@ def train(X_train: pd.DataFrame, y_train: pd.Series, X_test: pd.DataFrame, y_tes
         'min_samples_leaf': [1, 2, 4],
         'max_features': ['sqrt', 'log2']
     }
-    grid = ParameterGrid(param_grid)
+    grid = ParameterGrid(param_grid) # Creates a grid of parameter combinations from specified options.
     results = pd.DataFrame()
+    
+    if save_path is not None:
+        # Create directories if they do not exist
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
     for params in grid:
         model = RandomForestClassifier(**params)
@@ -109,6 +117,8 @@ def main(features_path: str, models_path: Optional[str] = None, results_path: Op
     results = train(X_train, y_train, X_test, y_test, save_path=models_path)
     
     if results_path is not None:
+        # Create directories if they do not exist
+        os.makedirs(os.path.dirname(results_path), exist_ok=True)
         # Save the results DataFrame to a CSV file
         results.to_csv(results_path, index=False)
         
