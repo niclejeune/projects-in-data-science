@@ -4,9 +4,9 @@ This repository contains Python scripts for processing medical images to extract
 
 ## Project Structure
 
-- `extract_features.py`: Module to process images and extract features such as hue, saturation, and symmetry.
-- `train_model.py`: Module to train RandomForest models using extracted features, evaluate their performance, and save the best model.
-- `predict_cancer.py`: Module to use a trained model to predict cancer likelihood and evaluate the model's accuracy.
+- `01_process_images.py`: Module to process images and extract features such as hue, saturation, and symmetry.
+- `02_train_classifiers.py`: Module to train RandomForest models using extracted features, evaluate their performance, and save the best model.
+- `03_evaluate_classifier.py`: Module to use a trained model to predict cancer likelihood and evaluate the model's accuracy.
 
 ## Installation
 
@@ -86,8 +86,17 @@ python 03_evaluate_classifier.py --features_path=features/features.csv --model_p
 Download the necessary data files from [this Google Drive link](https://drive.google.com/file/d/1bZ0v7IBB9HPhRgtCViYxqghOzstXsoTp/view?usp=sharing) and extract them into the `data/` directory at the root of this project. Note: the `data/` directory is not included in this repository due to size constraints.
 
 
+## Acknowledgments
+
+Special thanks to ChatGPT for assistance in generating README content and crafting detailed docstrings for this project.
+
+### Dataset Credit
+
+This project uses the PAD-UFES-20 dataset, available at [Mendeley Data](https://data.mendeley.com/datasets/zr7vgbcyr2/1). This dataset was collected by the Dermatological and Surgical Assistance Program at the Federal University of Espírito Santo (UFES), Brazil. It includes 2'298 samples of various skin lesions documented through clinical images and metadata.
+
+Out of the 2'298 samples, 1'272 were used to train and test the model.
+
 ## License
 
 This authors of this project reserve all rights.
 
-```
