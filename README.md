@@ -27,6 +27,11 @@ pip install -r requirements.txt
 
 ## Usage
 
+### 0. Data Preparation
+
+Download the necessary data files from [this Google Drive link](https://drive.google.com/file/d/1bZ0v7IBB9HPhRgtCViYxqghOzstXsoTp/view?usp=sharing) and extract them into the `data/` directory at the root of this project. Note: the `data/` directory is not included in this repository due to size constraints.
+
+
 ### 1. Feature Extraction (`01_process_images.py`)
 
 This script processes images and metadata to extract relevant features for cancer detection. It accepts several optional command-line arguments:
@@ -80,11 +85,6 @@ Example command to run:
 ```bash
 python 03_evaluate_classifier.py --features_path=features/features.csv --model_path=training/final_model --results_path=evaluation/results.csv
 ```
-
-### Data Preparation
-
-Download the necessary data files from [this Google Drive link](https://drive.google.com/file/d/1bZ0v7IBB9HPhRgtCViYxqghOzstXsoTp/view?usp=sharing) and extract them into the `data/` directory at the root of this project. Note: the `data/` directory is not included in this repository due to size constraints.
-
 
 ## Acknowledgments
 
