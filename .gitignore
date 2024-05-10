@@ -1,6 +1,8 @@
 data/
 graphs/
 
+.idea/
+
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,jupyternotebooks,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,jupyternotebooks,macos
 
