@@ -13,7 +13,7 @@ from skimage.color import rgb2gray
 from skimage.filters import threshold_otsu
 from scipy.ndimage import center_of_mass, shift
 
-#1st features: Color evenness
+#1st features: Color evenness # 'hsv_uniformity' is removed,
 def calculate_hsv_deviations(hsv_image, mask):
     """
     Calculate the standard deviation for each HSV 
@@ -22,14 +22,14 @@ def calculate_hsv_deviations(hsv_image, mask):
     mask_bool = mask > 0 #mask_bool, has True values where the mask is greater than 0 (indicating the area of interest) and False elsewhere.
     std_devs = []
     deviations = []
-    std_devs = {'Hue': 0, 'Saturation': 0, 'Value': 0, 'Uniformity_Score': 0}
+    std_devs = {'Hue': 0, 'Saturation': 0, 'Value': 0}
     for i, channel_name in enumerate(['Hue', 'Saturation', 'Value']):  # Iterate over HUE, SATURATION, VALUE channels
         channel = hsv_image[:, :, i] # [x,y, H/S/V] where x and y coordinates
         masked_channel = channel[mask_bool] # Apply mask
         std_dev = np.std(masked_channel)
         deviations.append(std_dev)
         std_devs[channel_name] = std_dev
-    std_devs['Uniformity_Score'] = np.mean(deviations)
+    #std_devs['Uniformity_Score'] = np.mean(deviations) it is useless
     return std_devs
 
 #for loop for processing all the pictures:
@@ -41,8 +41,8 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
     HSV_score = {'img_id':[],
                  'hue':[],
                  'saturation':[],
-                 'value':[],
-                'hsv_uniformity':[]}
+                 'value':[]}
+                #'hsv_uniformity':[]} removed
     for filename in os.listdir(img_path):
         if filename.endswith(".png"):
             base_name = filename[:-4]
@@ -55,7 +55,7 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
             
             if filename is None or mask_name is None:
                 HSV_score['img_id'].append(filename)
-                HSV_score['hue','saturation','value','hsv_uniformity'].append('N/A')
+                HSV_score['hue','saturation','value'].append('N/A') #'hsv_uniformity' removed
                 continue
                 
             #Average colour on the lesion:
@@ -89,7 +89,7 @@ def process_images_with_hsv_uniformity(img_path, mask_path_o):
             HSV_score['hue'].append(uniformity['Hue'])
             HSV_score['saturation'].append(uniformity['Saturation'])
             HSV_score['value'].append(uniformity['Value'])
-            HSV_score['hsv_uniformity'].append(uniformity['Uniformity_Score'])
+            #HSV_score['hsv_uniformity'].append(uniformity['Uniformity_Score']) removed, useless
 
     HSV_score_df = pd.DataFrame(HSV_score)
     return  HSV_score_df
