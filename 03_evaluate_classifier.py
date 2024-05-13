@@ -76,7 +76,7 @@ def main() -> None:
             image = plt.imread(image_path)[:, :, :3]
             mask = plt.imread(mask_path)
             label, pred_prob = classify(image, mask)
-            logging.info(f"Image {base_name} - {pred_prob} - {pred_prob * 100:.2f}%")
+            logging.info(f"Image {base_name} - {label} - {pred_prob * 100:.2f}%")
 
 
 if __name__ == '__main__':
