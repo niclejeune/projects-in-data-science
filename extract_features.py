@@ -1,104 +1,114 @@
-# Load libraries
-from skimage import segmentation, color
-from skimage.measure import label, regionprops
-from skimage import io, transform, img_as_float
-import matplotlib.pyplot as plt
-import matplotlib.colors
-import math
-import pandas as pd
-import os
 import numpy as np
-from skimage import io
-from skimage.color import rgb2gray
-from skimage.filters import threshold_otsu
 from scipy.ndimage import center_of_mass, shift
+from skimage.color import rgb2gray
+from skimage.measure import label, regionprops
+from skimage import color, measure, filters, transform, segmentation
+import matplotlib.colors as colors
+from skimage.filters import threshold_otsu
+from skimage.util import img_as_float
+import math
 
-#1st features: Color evenness
+
+def extract_features(image, mask):
+    """
+    Extracts individual HSV channel values, uniformity, compactness, and asymmetry features from a given image and its corresponding mask.
+
+    Args:
+        image (numpy.ndarray): Image data.
+        mask (numpy.ndarray): Corresponding mask data.
+
+    Returns:
+        list: List containing extracted features [hue, saturation, value, hsv_uniformity, compactness, vertical_asymmetry, horizontal_asymmetry].
+    """
+    # HSV
+    hue, saturation, value, hsv_uniformity = process_images_with_hsv_uniformity(image, mask)
+
+    # Compactness calculation
+    compactness = calculate_compactness(mask)
+
+    # Asymmetry calculation
+    vertical_asymmetry, horizontal_asymmetry = process_mask_asymmetry(mask)
+
+    return [hue, saturation, value, hsv_uniformity, compactness, vertical_asymmetry, horizontal_asymmetry]
+
+
+# HSV and uniformity
+
+
 def calculate_hsv_deviations(hsv_image, mask):
     """
-    Calculate the standard deviation for each HSV 
-    channel within the masked area.
+    Calculate the standard deviation for each HSV channel within the masked area.
+    Args:
+        hsv_image (numpy.ndarray): HSV image data.
+        mask (numpy.ndarray): Mask data as a binary array.
+
+    Returns:
+        dict: Dictionary containing the standard deviations of the 'Hue', 'Saturation', 'Value' channels and their mean (uniformity score).
     """
-    mask_bool = mask > 0 #mask_bool, has True values where the mask is greater than 0 (indicating the area of interest) and False elsewhere.
-    std_devs = []
+    mask_bool = mask > 0
     deviations = []
-    std_devs = {'Hue': 0, 'Saturation': 0, 'Value': 0, 'Uniformity_Score': 0}
-    for i, channel_name in enumerate(['Hue', 'Saturation', 'Value']):  # Iterate over HUE, SATURATION, VALUE channels
-        channel = hsv_image[:, :, i] # [x,y, H/S/V] where x and y coordinates
-        masked_channel = channel[mask_bool] # Apply mask
+    std_devs = {'Hue': 0, 'Saturation': 0, 'Value': 0}
+
+    for i, channel_name in enumerate(['Hue', 'Saturation', 'Value']):
+        channel = hsv_image[:, :, i]
+        masked_channel = channel[mask_bool]
         std_dev = np.std(masked_channel)
-        deviations.append(std_dev)
         std_devs[channel_name] = std_dev
-    std_devs['Uniformity_Score'] = np.mean(deviations)
+        deviations.append(std_dev)
+
+    std_devs['Uniformity'] = np.mean(deviations)  # Calculate the mean of deviations as the uniformity score
     return std_devs
 
-#for loop for processing all the pictures:
-def process_images_with_hsv_uniformity(img_path, mask_path_o):
-    '''
-    This function is processing the images in HSV chanel to get 
-    the standard deviation on the uniformity, gives a DF as result
-    '''
-    HSV_score = {'img_id':[],
-                 'hue':[],
-                 'saturation':[],
-                 'value':[],
-                'hsv_uniformity':[]}
-    for filename in os.listdir(img_path):
-        if filename.endswith(".png"):
-            base_name = filename[:-4]
-            image_path = os.path.join(img_path, filename)
-            mask_name = base_name + '_mask.png'
-            mask_path = os.path.join(mask_path_o, mask_name)
-            
-            rgb_img = plt.imread(image_path)[:,:,:3]
-            mask = plt.imread(mask_path)
-            
-            if filename is None or mask_name is None:
-                HSV_score['img_id'].append(filename)
-                HSV_score['hue','saturation','value','hsv_uniformity'].append('N/A')
-                continue
-                
-            #Average colour on the lesion:
-            img_avg_lesion = rgb_img.copy()
-            for i in range(3):
-                channel = img_avg_lesion[:,:,i]
-                mean = np.mean(channel[mask.astype(bool)])
-                channel[mask.astype(bool)] = mean
-                img_avg_lesion[:,:,i] = channel
 
-            # cropping the image according to the mask
-            lesion_coords = np.where(mask != 0)
-            min_x = min(lesion_coords[0])
-            max_x = max(lesion_coords[0])
-            min_y = min(lesion_coords[1])
-            max_y = max(lesion_coords[1])
-            cropped_lesion = rgb_img[min_x:max_x,min_y:max_y]
+def process_images_with_hsv_uniformity(image, mask):
+    """
+    Processes a single image and its mask by averaging colors in lesion, segmenting and calculating HSV deviations including uniformity.
+    Args:
+        image (numpy.ndarray): Image data as a numpy array.
+        mask (numpy.ndarray): Mask data as a numpy array.
 
-            # Segment the cropped lesion with SLIC (without boundaries)
-            img_avg_lesion_1 = rgb_img.copy()
-            segments_1 = segmentation.slic(cropped_lesion, compactness = 50, n_segments=10, sigma=3,
-                                        start_label=1)
-            out_1 = color.label2rgb(segments_1, cropped_lesion, kind='avg')
-            img_avg_lesion_1[min_x:max_x,min_y:max_y] = out_1
-            img_avg_lesion_1[mask == 0] = rgb_img[mask==0]            
+    Returns:
+        tuple: Tuple containing the standard deviations of 'hue', 'saturation', 'value', and their mean uniformity.
+    """
+    # Ensure only the RGB channels are considered if extra channels exist
+    rgb_img = image[:, :, :3]
 
-            img_avg_lesion_1_hsv = matplotlib.colors.rgb_to_hsv(img_avg_lesion_1)
-            
-            uniformity = calculate_hsv_deviations(img_avg_lesion_1_hsv, mask)
-            HSV_score['img_id'].append(filename)
-            HSV_score['hue'].append(uniformity['Hue'])
-            HSV_score['saturation'].append(uniformity['Saturation'])
-            HSV_score['value'].append(uniformity['Value'])
-            HSV_score['hsv_uniformity'].append(uniformity['Uniformity_Score'])
+    # Average colour on the lesion:
+    img_avg_lesion = rgb_img.copy()
+    for i in range(3):
+        channel = img_avg_lesion[:, :, i]
+        mean = np.mean(channel[mask.astype(bool)])
+        channel[mask.astype(bool)] = mean
+        img_avg_lesion[:, :, i] = channel
 
-    HSV_score_df = pd.DataFrame(HSV_score)
-    return  HSV_score_df
+    # Cropping the image according to the mask
+    lesion_coords = np.where(mask != 0)
+    min_x = min(lesion_coords[0])
+    max_x = max(lesion_coords[0])
+    min_y = min(lesion_coords[1])
+    max_y = max(lesion_coords[1])
+    cropped_lesion = rgb_img[min_x:max_x, min_y:max_y]
+
+    # Segment the cropped lesion with SLIC (without boundaries)
+    segments = segmentation.slic(cropped_lesion, compactness=50, n_segments=10, sigma=3, start_label=1)
+    out = color.label2rgb(segments, cropped_lesion, kind='avg')
+    img_avg_lesion[min_x:max_x, min_y:max_y] = out
+    img_avg_lesion[mask == 0] = rgb_img[mask == 0]
+
+    # Convert the modified image to HSV
+    img_avg_lesion_hsv = colors.rgb_to_hsv(img_avg_lesion)
+
+    # Calculate HSV deviations
+    std_devs = calculate_hsv_deviations(img_avg_lesion_hsv, mask)
+
+    # Extracting values from the dictionary to return as a tuple
+    return (std_devs['Hue'], std_devs['Saturation'], std_devs['Value'], std_devs['Uniformity'])
 
 
-# 2nd feature: Compactness
-def calculate_compactness(mask_path):
-    # Load the mask
-    mask = io.imread(mask_path)
+# Compactness
+
+
+def calculate_compactness(mask):
     if mask.ndim > 2:
         mask = mask[:, :, 0]  # Convert to grayscale if not already
 
@@ -120,38 +130,48 @@ def calculate_compactness(mask_path):
     compactness = 4 * math.pi * area / (perimeter ** 2)
     return compactness
 
-def process_all_images(directory):
-    compactness_dict = {'img_id':[],
-                 'compactness_score':[]}
-    for filename in os.listdir(directory):
-        if filename.endswith("_mask.png"):
-            full_path = os.path.join(directory, filename)
-            compactness = calculate_compactness(full_path)
-            # I need to remove the _mask from the file names
-            filename = filename.replace("_mask", "")
-            if compactness is not None:
-                compactness_dict['img_id'].append(filename)
-                compactness_dict['compactness_score'].append(compactness)
-            else:
-                compactness_dict['img_id'].append(filename)
-                compactness_dict['compactness_score'].append('N/A')
-    compactness_score_df = pd.DataFrame(compactness_dict)
-    return compactness_score_df
+
+# Asymmetry
 
 
-#3rd features: Assymetry
-def read_and_process_image(image_path):
+def process_mask_asymmetry(mask):
     """
-    Reads an image from the specified path and processes it into a binary image based on a threshold.
+       Processes all PNG images in the specified directory to measure their asymmetry.
+       Args:
+           directory (str): Path to the directory containing images.
+           output_path (str): Path where the CSV output will be saved.
+       """
+    binary_image = process_image(mask)
+    # Calculate center of mass and shift the image
+    shifted_image_float = shift_to_center(binary_image)
+
+    vertical_asymmetries = []
+    horizontal_asymmetries = []
+    # Rotate the image at 5-degree intervals up to 90 degrees
+    for angle in range(0, 91, 5):
+        rotated_image_float = transform.rotate(shifted_image_float, angle, resize=True, center=None, order=1,
+                                               mode='constant', cval=0, clip=True, preserve_range=True)
+        rotated_image_binary = rotated_image_float > 0.5
+        # Measure asymmetry for each rotated image
+        vertical, horizontal = measure_asymmetry(rotated_image_binary)
+        vertical_asymmetries.append(vertical)
+        horizontal_asymmetries.append(horizontal)
+
+    mean_vertical_asymmetry = np.mean(vertical_asymmetries)
+    mean_horizontal_asymmetry = np.mean(horizontal_asymmetries)
+
+    return mean_vertical_asymmetry, mean_horizontal_asymmetry
+
+
+def process_image(original_image):
+    """
+    Processes image into a binary image based on a threshold.
     Args:
-        image_path (str): Path to the image file.
+        original_image (numpy.ndarray): Original image data
 
     Returns:
         numpy.ndarray: Binary image where pixels are either True (1) or False (0).
     """
-    # Read the image from the file
-    original_image = io.imread(image_path)
-
     # Check if the image has three dimensions (color image)
     if len(original_image.shape) == 3:
         # Convert the image to grayscale
@@ -207,63 +227,3 @@ def measure_asymmetry(binary_img):
     horizontal_asymmetry = np.sum(np.logical_xor(binary_img, horizontal_flip))
 
     return vertical_asymmetry, horizontal_asymmetry
-
-def process_images_in_directory(directory):
-    """
-       Processes all PNG images in the specified directory to measure their asymmetry.
-       Args:
-           directory (str): Path to the directory containing images.
-           output_path (str): Path where the CSV output will be saved.
-       """
-    asymmetry_data = []
-    # Loop through all files in the directory
-    for filename in os.listdir(directory):
-        if filename.endswith(".png"):  # Ensuring to process only images
-            f = os.path.join(directory, filename)
-            # Read and process the image to binary
-            binary_image = read_and_process_image(f)
-            # Calculate center of mass and shift the image
-            shifted_image_float = shift_to_center(binary_image)
-            results = {}
-            # Rotate the image at 5-degree intervals up to 90 degrees
-            for angle in range(0, 91, 5):
-                rotated_image_float = transform.rotate(shifted_image_float, angle, resize=True, center=None, order=1, mode='constant', cval=0, clip=True, preserve_range=True)
-                rotated_image_binary = rotated_image_float > 0.5
-                # Measure asymmetry for each rotated image
-                vertical, horizontal = measure_asymmetry(rotated_image_binary)
-                results[angle] = (vertical, horizontal)
-            for angle, (vertical, horizontal) in results.items():
-                # Store results for each angle
-                asymmetry_data.append([filename, angle, vertical, horizontal])
-    return data_framing(asymmetry_data)
-
-def data_framing(data):
-    df = pd.DataFrame(data, columns=['Filename', 'Angle', 'Vertical Asymmetry', 'Horizontal Asymmetry'])
-    assymetry_df = preprocess_assymetry(df)
-    return assymetry_df
-
-def main_assy_fun(input_directory):
-    assymetry_df = process_images_in_directory(input_directory)
-    return assymetry_df
-
-
-# Pre-process data from assymetry: 
-def preprocess_assymetry(data):
-
-    ''' This function standardize the Assymetry measurments, and 
-    creats a datafram out of it - for creating a features csv file.
-    THIS IS A HELPER FUNCTION'''
-
-    # Remove '_mask' from filenames
-    data['Filename'] = data['Filename'].str.replace('_mask.png', '.png')
-    data = data.rename(columns={'Filename': 'img_id'})
-
-    # Drop the 'Mask' column
-    data = data.drop(columns=['Angle'])
-    data.columns = ["img_id", "Vertical Asymmetry_mean", "Horizontal Asymmetry_mean"]
-
-    # Calculate mean for each image
-    summary_df =  data.groupby("img_id").mean()
-    return summary_df
-
-
