@@ -56,8 +56,8 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame: The preprocessed DataFrame.
     """
-    features = ['hue', 'saturation', 'value', 'hsv_uniformity', 'compactness_score', 'Vertical Asymmetry_mean',
-                'Horizontal Asymmetry_mean']
+    features = ['hue', 'saturation', 'value', 'compactness_score', 'Vertical Asymmetry_mean',
+                'Horizontal Asymmetry_mean', 'dots']
     target = 'cancer'
     df = df[features + [target]]
     return df
@@ -97,20 +97,21 @@ def train(X_train: pd.DataFrame, y_train: pd.Series, X_test: pd.DataFrame, y_tes
         pd.DataFrame: DataFrame containing grid search results.
     """
     param_grid = {
-        'n_estimators': [*range(1, 17), 50, 100, 1000, 2500, 5000],
-        'max_depth': range(1, 21),
+        'n_estimators': [1, 5, 10, 50, 100, 1000, 2500, 5000],
+        'max_depth': range(1, 11),
         'min_samples_split': [2, 5, 10],
         'min_samples_leaf': [1, 2, 4],
         'max_features': ['sqrt', 'log2']
     }
     grid = ParameterGrid(param_grid)  # Creates a grid of parameter combinations from specified options.
+    total_combinations = len(grid)
     results = pd.DataFrame()
 
     if save_path is not None:
         # Create directories if they do not exist
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
-    for params in grid:
+    for i, params in enumerate(grid):
         model = RandomForestClassifier(**params)
         model.fit(X_train, y_train)
         accuracy = accuracy_score(y_test, model.predict(X_test))
@@ -122,6 +123,10 @@ def train(X_train: pd.DataFrame, y_train: pd.Series, X_test: pd.DataFrame, y_tes
             # Save model
             model_save_path = f"{save_path}model_{params}"
             joblib.dump(model, model_save_path)
+
+        if (i + 1) % 10 == 0:
+            percent_complete = (i + 1) / total_combinations * 100
+            print(f"Training progress: {percent_complete:.2f}% complete ({i + 1}/{total_combinations})")
 
     return results
 

@@ -67,8 +67,8 @@ def process_images(images_path: str, masks_path: str, metadata: pd.DataFrame) ->
             features_list.append(row)
 
     features_df = pd.DataFrame(features_list, columns=['img_id', 'diagnostic', 'cancer', 'hue', 'saturation', 'value',
-                                                       'hsv_uniformity', 'compactness_score', 'Vertical Asymmetry_mean',
-                                                       'Horizontal Asymmetry_mean'])
+                                                        'compactness_score', 'Vertical Asymmetry_mean',
+                                                       'Horizontal Asymmetry_mean', 'dots'])
     return features_df
 
 
@@ -79,6 +79,7 @@ def main() -> None:
     args = parse_args()
     metadata = load_metadata(args.metadata_path)
     features_df = process_images(args.images_path, args.masks_path, metadata)
+    os.makedirs(os.path.dirname(args.output_csv), exist_ok=True)
     features_df.to_csv(args.output_csv, index=False)
     logging.info(f'Features saved to {args.output_csv}')
 

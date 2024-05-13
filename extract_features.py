@@ -4,16 +4,18 @@ import numpy as np
 from scipy.ndimage import center_of_mass, shift
 from skimage.color import rgb2gray
 from skimage.measure import label, regionprops
-from skimage import color, transform, segmentation
+from skimage import color, transform, segmentation, filters, measure, morphology
 import matplotlib.colors as colors
 from skimage.filters import threshold_otsu
+from skimage.morphology import opening, disk
 from skimage.util import img_as_float
 import math
+import cv2
 
 
 def extract_features(image: np.ndarray, mask: np.ndarray) -> List[float]:
     """
-    Extracts individual HSV channel values, uniformity, compactness, and asymmetry features from a given image and its corresponding mask.
+    Extracts individual HSV channel values, compactness, asymmetry, and dots features from a given image and its corresponding mask.
     This method leverages multiple image processing techniques to evaluate various characteristics of the lesion area identified by the mask.
 
     Args:
@@ -21,10 +23,10 @@ def extract_features(image: np.ndarray, mask: np.ndarray) -> List[float]:
         mask (np.ndarray): Mask data as a binary numpy array.
 
     Returns:
-        List[float]: List containing extracted features [hue, saturation, value, hsv_uniformity, compactness, vertical_asymmetry, horizontal_asymmetry].
+        List[float]: List containing extracted features [hue, saturation, value, compactness, vertical_asymmetry, horizontal_asymmetry, dots].
     """
     # HSV
-    hue, saturation, value, hsv_uniformity = process_images_with_hsv_uniformity(image, mask)
+    hue, saturation, value = process_images_with_hsv(image, mask)
 
     # Compactness calculation
     compactness = calculate_compactness(mask)
@@ -32,24 +34,62 @@ def extract_features(image: np.ndarray, mask: np.ndarray) -> List[float]:
     # Asymmetry calculation
     vertical_asymmetry, horizontal_asymmetry = process_mask_asymmetry(mask)
 
-    return [hue, saturation, value, hsv_uniformity, compactness, vertical_asymmetry, horizontal_asymmetry]
+    # Dots
+
+    dots = count_dots_and_globules(image, mask)
+
+    return [hue, saturation, value, compactness, vertical_asymmetry, horizontal_asymmetry, dots]
 
 
-# HSV and uniformity
+# Dots
+
+
+def count_dots_and_globules(image: np.ndarray, mask: np.ndarray) -> int:
+    """
+    Identify and count the number of dots and globules in the lesion area of the image using morphological operations and contour detection.
+
+    Args:
+        image (np.ndarray): Image data as a numpy array.
+        mask (np.ndarray): Mask data as a binary numpy array.
+
+    Returns:
+        int: Count of dots and globules.
+    """
+    # Convert image to grayscale and apply mask
+    gray_image = rgb2gray(image)
+    masked_image = gray_image * mask
+
+    # Threshold the image
+    thresh = threshold_otsu(masked_image[masked_image > 0])  # Apply Otsu's method only on masked area
+    binary_image = masked_image > thresh
+
+    # Morphological opening to remove small objects
+    selem = disk(2)  # Disk-shaped structural element with a radius of 2 pixels
+    opened_image = opening(binary_image, selem)
+
+    # Contour detection using OpenCV
+    contours, _ = cv2.findContours((opened_image * 255).astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # Filter out very small contours
+    dots_and_globules = [contour for contour in contours if cv2.contourArea(contour) > 10]
+
+    return len(dots_and_globules)
+
+
+# HSV
 
 
 def calculate_hsv_deviations(hsv_image: np.ndarray, mask: np.ndarray) -> dict:
     """
     Calculate the standard deviation for each HSV channel within the masked area.
-    This function applies a binary mask to an HSV image and calculates the standard deviation for each channel,
-    which is used to derive a uniformity score for the lesion area.
+    This function applies a binary mask to an HSV image and calculates the standard deviation for each channel.
 
     Args:
         hsv_image (np.ndarray): HSV image data.
         mask (np.ndarray): Mask data as a binary array.
 
     Returns:
-        dict: Dictionary containing the standard deviations of the 'Hue', 'Saturation', 'Value' channels and their mean (uniformity score).
+        dict: Dictionary containing the standard deviations of the 'Hue', 'Saturation', 'Value' channels.
     """
     mask_bool = mask > 0
     deviations = []
@@ -62,19 +102,18 @@ def calculate_hsv_deviations(hsv_image: np.ndarray, mask: np.ndarray) -> dict:
         std_devs[channel_name] = std_dev
         deviations.append(std_dev)
 
-    std_devs['Uniformity'] = np.mean(deviations)  # Calculate the mean of deviations as the uniformity score
     return std_devs
 
 
-def process_images_with_hsv_uniformity(image, mask):
+def process_images_with_hsv(image, mask):
     """
-    Processes a single image and its mask by averaging colors in lesion, segmenting and calculating HSV deviations including uniformity.
+    Processes a single image and its mask by averaging colors in lesion, segmenting and calculating HSV deviations.
     Args:
         image (numpy.ndarray): Image data as a numpy array.
         mask (numpy.ndarray): Mask data as a numpy array.
 
     Returns:
-        tuple: Tuple containing the standard deviations of 'hue', 'saturation', 'value', and their mean uniformity.
+        tuple: Tuple containing the standard deviations of 'hue', 'saturation', 'value'.
     """
     # Ensure only the RGB channels are considered if extra channels exist
     rgb_img = image[:, :, :3]
@@ -108,7 +147,7 @@ def process_images_with_hsv_uniformity(image, mask):
     std_devs = calculate_hsv_deviations(img_avg_lesion_hsv, mask)
 
     # Extracting values from the dictionary to return as a tuple
-    return (std_devs['Hue'], std_devs['Saturation'], std_devs['Value'], std_devs['Uniformity'])
+    return (std_devs['Hue'], std_devs['Saturation'], std_devs['Value'])
 
 
 # Compactness

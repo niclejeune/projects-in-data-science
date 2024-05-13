@@ -44,7 +44,7 @@ def classify(img: np.ndarray, mask: np.ndarray) -> tuple:
 
     # Define feature names explicitly
     feature_names = ['hue', 'saturation', 'value', 'hsv_uniformity', 'compactness_score', 'Vertical Asymmetry_mean',
-                     'Horizontal Asymmetry_mean']
+                     'Horizontal Asymmetry_mean', 'dots']
 
     # Create a DataFrame for the features, with the defined feature names
     features_df = pd.DataFrame([feature_values], columns=feature_names)
