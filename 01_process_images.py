@@ -9,7 +9,13 @@ import extract_features
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
+    """
+    Parse the command line arguments for the script.
+
+    Returns:
+        argparse.Namespace: Namespace object containing the arguments.
+    """
     parser = argparse.ArgumentParser(description="Process image and mask paths for feature extraction.")
     parser.add_argument('--images_path', type=str, default='data/images', help='Path to the images folder')
     parser.add_argument('--masks_path', type=str, default='data/masks', help='Path to the masks folder')
@@ -19,13 +25,33 @@ def parse_args():
     return parser.parse_args()
 
 
-def load_metadata(metadata_path):
+def load_metadata(metadata_path: str) -> pd.DataFrame:
+    """
+    Load and preprocess the metadata from a CSV file.
+
+    Args:
+        metadata_path (str): Path to the metadata CSV file.
+
+    Returns:
+        pd.DataFrame: Processed metadata with a new binary column indicating cancer presence.
+    """
     metadata = pd.read_csv(metadata_path)
     metadata['cancer'] = metadata['diagnostic'].apply(lambda x: 1 if x in ['BCC', 'SCC', 'MEL'] else 0)
     return metadata
 
 
-def process_images(images_path, masks_path, metadata):
+def process_images(images_path: str, masks_path: str, metadata: pd.DataFrame) -> pd.DataFrame:
+    """
+    Process each image and extract features using masks.
+
+    Args:
+        images_path (str): Path to the directory containing images.
+        masks_path (str): Path to the directory containing corresponding masks.
+        metadata (pd.DataFrame): Dataframe containing metadata information.
+
+    Returns:
+        pd.DataFrame: DataFrame containing extracted features along with diagnostic and cancer information.
+    """
     features_list = []
     for image_filename in os.listdir(images_path):
         if image_filename.endswith(".png"):
@@ -46,7 +72,10 @@ def process_images(images_path, masks_path, metadata):
     return features_df
 
 
-def main():
+def main() -> None:
+    """
+    Main function to execute the process.
+    """
     args = parse_args()
     metadata = load_metadata(args.metadata_path)
     features_df = process_images(args.images_path, args.masks_path, metadata)

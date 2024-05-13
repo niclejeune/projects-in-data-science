@@ -1,24 +1,27 @@
+from typing import List
+
 import numpy as np
 from scipy.ndimage import center_of_mass, shift
 from skimage.color import rgb2gray
 from skimage.measure import label, regionprops
-from skimage import color, measure, filters, transform, segmentation
+from skimage import color, transform, segmentation
 import matplotlib.colors as colors
 from skimage.filters import threshold_otsu
 from skimage.util import img_as_float
 import math
 
 
-def extract_features(image, mask):
+def extract_features(image: np.ndarray, mask: np.ndarray) -> List[float]:
     """
     Extracts individual HSV channel values, uniformity, compactness, and asymmetry features from a given image and its corresponding mask.
+    This method leverages multiple image processing techniques to evaluate various characteristics of the lesion area identified by the mask.
 
     Args:
-        image (numpy.ndarray): Image data.
-        mask (numpy.ndarray): Corresponding mask data.
+        image (np.ndarray): Image data as a numpy array.
+        mask (np.ndarray): Mask data as a binary numpy array.
 
     Returns:
-        list: List containing extracted features [hue, saturation, value, hsv_uniformity, compactness, vertical_asymmetry, horizontal_asymmetry].
+        List[float]: List containing extracted features [hue, saturation, value, hsv_uniformity, compactness, vertical_asymmetry, horizontal_asymmetry].
     """
     # HSV
     hue, saturation, value, hsv_uniformity = process_images_with_hsv_uniformity(image, mask)
@@ -35,12 +38,15 @@ def extract_features(image, mask):
 # HSV and uniformity
 
 
-def calculate_hsv_deviations(hsv_image, mask):
+def calculate_hsv_deviations(hsv_image: np.ndarray, mask: np.ndarray) -> dict:
     """
     Calculate the standard deviation for each HSV channel within the masked area.
+    This function applies a binary mask to an HSV image and calculates the standard deviation for each channel,
+    which is used to derive a uniformity score for the lesion area.
+
     Args:
-        hsv_image (numpy.ndarray): HSV image data.
-        mask (numpy.ndarray): Mask data as a binary array.
+        hsv_image (np.ndarray): HSV image data.
+        mask (np.ndarray): Mask data as a binary array.
 
     Returns:
         dict: Dictionary containing the standard deviations of the 'Hue', 'Saturation', 'Value' channels and their mean (uniformity score).
@@ -108,7 +114,17 @@ def process_images_with_hsv_uniformity(image, mask):
 # Compactness
 
 
-def calculate_compactness(mask):
+def calculate_compactness(mask: np.ndarray) -> float:
+    """
+    Calculate the compactness of the largest lesion region identified in the binary mask.
+    Compactness is defined as the ratio of the area to the square of the perimeter.
+
+    Args:
+        mask (np.ndarray): Mask data as a binary array.
+
+    Returns:
+        float: Compactness score of the largest region.
+    """
     if mask.ndim > 2:
         mask = mask[:, :, 0]  # Convert to grayscale if not already
 
@@ -134,13 +150,17 @@ def calculate_compactness(mask):
 # Asymmetry
 
 
-def process_mask_asymmetry(mask):
+def process_mask_asymmetry(mask: np.ndarray) -> tuple:
     """
-       Processes all PNG images in the specified directory to measure their asymmetry.
-       Args:
-           directory (str): Path to the directory containing images.
-           output_path (str): Path where the CSV output will be saved.
-       """
+    Measure the asymmetry of the lesion in the mask. The function computes asymmetry scores by rotating the lesion
+    and comparing differences between the original and flipped images at various angles.
+
+    Args:
+        mask (np.ndarray): Mask data as a binary array.
+
+    Returns:
+        tuple: Mean vertical and horizontal asymmetry scores.
+    """
     binary_image = process_image(mask)
     # Calculate center of mass and shift the image
     shifted_image_float = shift_to_center(binary_image)
@@ -163,14 +183,16 @@ def process_mask_asymmetry(mask):
     return mean_vertical_asymmetry, mean_horizontal_asymmetry
 
 
-def process_image(original_image):
+def process_image(original_image: np.ndarray) -> np.ndarray:
     """
-    Processes image into a binary image based on a threshold.
+    Converts an image to a binary format based on optimal thresholding.
+    This processing is for further analysis of asymmetry.
+
     Args:
-        original_image (numpy.ndarray): Original image data
+        original_image (np.ndarray): Original image data.
 
     Returns:
-        numpy.ndarray: Binary image where pixels are either True (1) or False (0).
+        np.ndarray: Binary image where pixels are either True (1) or False (0).
     """
     # Check if the image has three dimensions (color image)
     if len(original_image.shape) == 3:
@@ -187,14 +209,15 @@ def process_image(original_image):
     return binary_image
 
 
-def shift_to_center(binary_image):
+def shift_to_center(binary_image: np.ndarray) -> np.ndarray:
     """
-    Calculates the center of mass of the binary image and shifts it to the center of the image.
+    Shift the center of mass of a binary image to its geometric center. This adjustment is needed for proper asymmetry analysis.
+
     Args:
-        binary_image (numpy.ndarray): Binary image.
+        binary_image (np.ndarray): Binary image.
 
     Returns:
-        numpy.ndarray: Shifted binary image as float values.
+        np.ndarray: Shifted binary image as float values.
     """
     # Calculate the center of mass of the binary image
     com = center_of_mass(binary_image)
@@ -208,11 +231,12 @@ def shift_to_center(binary_image):
     return shifted_image_float
 
 
-def measure_asymmetry(binary_img):
+def measure_asymmetry(binary_img: np.ndarray) -> tuple:
     """
-    Measures the asymmetry of the image by flipping it vertically and horizontally.
+    Measures the asymmetry of the image by flipping it vertically and horizontally and calculating the discrepancy from the original.
+
     Args:
-        binary_img (numpy.ndarray): Binary image.
+        binary_img (np.ndarray): Binary image.
 
     Returns:
         tuple: Vertical and horizontal asymmetry scores.
