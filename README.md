@@ -98,5 +98,5 @@ Out of the 2'298 samples, 1'272 were used to train and test the model.
 
 ## License
 
-This authors of this project reserve all rights.
+The authors of this project reserve all rights.
 
