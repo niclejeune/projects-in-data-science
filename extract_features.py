@@ -48,12 +48,14 @@ def count_dots_and_globules(image: np.ndarray, mask: np.ndarray) -> int:
     """
     Identify and count the number of dots and globules in the lesion area of the image using morphological operations and contour detection.
 
+    A normalized log(count) is returned
+
     Args:
         image (np.ndarray): Image data as a numpy array.
         mask (np.ndarray): Mask data as a binary numpy array.
 
     Returns:
-        int: Count of dots and globules.
+        int: Normalized log count of dots and globules.
     """
     # Convert image to grayscale and apply mask
     gray_image = rgb2gray(image)
@@ -73,7 +75,13 @@ def count_dots_and_globules(image: np.ndarray, mask: np.ndarray) -> int:
     # Filter out very small contours
     dots_and_globules = [contour for contour in contours if cv2.contourArea(contour) > 10]
 
-    return len(dots_and_globules)
+    n_dots = len(dots_and_globules)
+    log_n_dots = np.log10(n_dots)
+
+    # Highest dot count in dataset < 10^3
+    norm_log_n_dots = log_n_dots / 3.0
+
+    return norm_log_n_dots
 
 
 # HSV
@@ -194,11 +202,13 @@ def process_mask_asymmetry(mask: np.ndarray) -> tuple:
     Measure the asymmetry of the lesion in the mask. The function computes asymmetry scores by rotating the lesion
     and comparing differences between the original and flipped images at various angles.
 
+    A normalized log(value) is returned
+
     Args:
         mask (np.ndarray): Mask data as a binary array.
 
     Returns:
-        tuple: Mean vertical and horizontal asymmetry scores.
+        tuple: Normalized log mean vertical and horizontal asymmetry scores.
     """
     binary_image = process_image(mask)
     # Calculate center of mass and shift the image
@@ -219,7 +229,14 @@ def process_mask_asymmetry(mask: np.ndarray) -> tuple:
     mean_vertical_asymmetry = np.mean(vertical_asymmetries)
     mean_horizontal_asymmetry = np.mean(horizontal_asymmetries)
 
-    return mean_vertical_asymmetry, mean_horizontal_asymmetry
+    log_mean_vertical_asymmetry = np.log10(mean_vertical_asymmetry)
+    log_mean_horizontal_asymmetry = np.log10(mean_horizontal_asymmetry)
+
+    # Highest asymmetry in dataset < 10^7
+    normalized_log_mean_vertical_asymmetry = log_mean_vertical_asymmetry / 7.0
+    normalized_mean_horizontal_asymmetry = log_mean_horizontal_asymmetry / 7.0
+
+    return normalized_log_mean_vertical_asymmetry, normalized_mean_horizontal_asymmetry
 
 
 def process_image(original_image: np.ndarray) -> np.ndarray:
