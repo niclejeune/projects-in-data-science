@@ -97,7 +97,7 @@ def train(X_train: pd.DataFrame, y_train: pd.Series, X_test: pd.DataFrame, y_tes
         pd.DataFrame: DataFrame containing grid search results.
     """
     param_grid = {
-        'n_estimators': [1, 5, 10, 50, 100, 1000, 2500, 5000],
+        'n_estimators': [1, 3, 9, 27, 81, 243, 729, 2187],  # odd values to avoid ties
         'max_depth': range(1, 11),
         'min_samples_split': [2, 5, 10],
         'min_samples_leaf': [1, 2, 4],
