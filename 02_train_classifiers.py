@@ -11,6 +11,8 @@ import os
 import argparse
 import logging
 
+import common
+
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -130,29 +132,6 @@ def train(X_train: pd.DataFrame, y_train: pd.Series, X_test: pd.DataFrame, y_tes
 
     return results
 
-
-def save_or_show_plot(output_file: Optional[str] = None) -> None:
-    """
-    Saves the plot to a PDF file if an output file path is provided, or displays the plot on screen if no file path is specified.
-
-    Parameters:
-        output_file (Optional[str]): The file path where the plot will be saved as a PDF. If None, the plot will be displayed using plt.show().
-
-    Returns:
-        None
-    """
-    if output_file is not None:
-        # Ensure the directory exists
-        os.makedirs(os.path.dirname(output_file), exist_ok=True)
-
-        # Save the figure as a PDF
-        plt.savefig(output_file)
-        plt.close()  # Close the plot to free up memory
-    else:
-        # Display the plot
-        plt.show()
-
-
 def plot_heatmaps(results: pd.DataFrame, output_file: Optional[str] = None) -> None:
     """
     Generates a series of heatmaps from a DataFrame containing model performance results, specifically
@@ -207,7 +186,7 @@ def plot_heatmaps(results: pd.DataFrame, output_file: Optional[str] = None) -> N
     plt.tight_layout()
 
     # Output plot
-    save_or_show_plot(output_file)
+    common.save_or_show_plot(output_file)
 
 
 def plot_parameter_effects(results: pd.DataFrame, output_file: Optional[str] = None) -> None:
@@ -240,7 +219,7 @@ def plot_parameter_effects(results: pd.DataFrame, output_file: Optional[str] = N
         ax.grid(True)
 
     plt.tight_layout()  # Adjust layout
-    save_or_show_plot(output_file)  # Output plot
+    common.save_or_show_plot(output_file)  # Output plot
 
 
 def plot_accuracy_vs_estimators(results: pd.DataFrame, output_file: Optional[str] = None) -> None:
@@ -273,7 +252,7 @@ def plot_accuracy_vs_estimators(results: pd.DataFrame, output_file: Optional[str
     plt.tight_layout()
 
     # Save or display the plot
-    save_or_show_plot(output_file)
+    common.save_or_show_plot(output_file)
 
 
 def select_best_parameters(results: pd.DataFrame) -> Dict[str, Dict[str, float]]:
@@ -356,7 +335,7 @@ def plot_evaluation_results_boxplot(evaluation_results: Dict[str, List[float]], 
     plt.grid(True)
 
     # Save or display the plot
-    save_or_show_plot(output_file)
+    common.save_or_show_plot(output_file)
 
 
 def select_best_optimization_strategy(evaluation_results: Dict[str, List[float]],
